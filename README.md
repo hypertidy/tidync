@@ -100,7 +100,7 @@ devtools::install_github("hypertidy/tidync", dependencies = TRUE)
 Example
 -------
 
-This is a basic example which shows you how to connect to a file.
+This is a basic example which shows how to connect to a file.
 
 ``` r
 file <- system.file("extdata", "oceandata", "S20092742009304.L3m_MO_CHL_chlor_a_9km.nc", package = "tidync")
@@ -136,6 +136,18 @@ Plesase get in touch if you have specfic workflows that `tidync` is not providin
 -   we can't do "grouped filters"" (i.e. polygon-overlay extraction), but it's in the works
 -   compound types are not supported, though see the "rhdf5" branch on Github
 -   NetCDF groups are not exposed (groups are like a "files within a file", analogous to a file system directory)
+
+Why `ncdf4` and `RNetCDF`?
+
+RNetCDF is easier to work with for extracting metadata from sources, and this formed the basis of the `ncmeta` package. It's easy to turn RNetCDF into data frames for metadata. But, only ncdf4 can read from Thredds at the moment because of a bug in RNetCDF. (No, it's not because RNetCDF doesn't support NetCDF v4, it does.)
+
+An upcoming release of RNetCDF will include Thredds on Linux, hopefully soon the Windows and Mac builds on CRAN will also support this for ncdf4 as well.
+
+The upcoming RNetCDF will also support groups, which means it's still better at the moment for ncmeta to use RNetCDF and not ncdf4.
+
+Tidync uses ncdf4 for reading from Thredds, but we'll remove this need when RNetCDF or another package can do the task.
+
+A final consolidation will include compound types as well.
 
 Terminology
 -----------

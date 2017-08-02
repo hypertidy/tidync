@@ -18,7 +18,7 @@ Imports:
     ncdf4,
     ncmeta, 
     purrr, 
-    RNetCDF(>= 2.0-1),
+    RNetCDF(>= 1.9-1),
     raster,
     rlang, 
     tibble,
@@ -32,7 +32,7 @@ Suggests: ggplot2,
     testthat,
     covr, 
     ncdump (> 0.0.3)
-Remotes:  hypertidy/ncdump, hypertidy/ncmeta
+Remotes:  hypertidy/ncdump, hypertidy/ncmeta, mjwoods/RNetCDF
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/hypertidy/tidync

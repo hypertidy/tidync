@@ -136,6 +136,23 @@ Plesase get in touch if you have specfic workflows that `tidync` is not providin
 * compound types are not supported, though see the "rhdf5" branch on Github
 * NetCDF groups are not exposed (groups are like a "files within a file", analogous to a file system directory)
 
+
+Why `ncdf4` and `RNetCDF`? 
+
+RNetCDF is easier to work with for extracting metadata from sources, and this formed
+the basis of the `ncmeta` package. It's easy to turn RNetCDF into data frames for metadata. But, only ncdf4 can read from Thredds at the moment because of a bug in 
+RNetCDF.  (No, it's not because RNetCDF doesn't support NetCDF v4, it does.)
+
+An upcoming release of RNetCDF will include Thredds on Linux, hopefully soon the 
+Windows and Mac builds on CRAN will also support this for ncdf4 as well. 
+
+The upcoming RNetCDF will also support groups, which means it's still better at the moment for ncmeta to use RNetCDF and not ncdf4. 
+
+Tidync uses ncdf4 for reading from Thredds, but we'll remove this need when RNetCDF 
+or another package can do the task. 
+
+A final consolidation will include compound types as well. 
+
 ## Terminology
 
 Here I use the term "slab" as a generalized "array" (in the R sense) that may be read from a NetCDF.  We must provide the NetCDF API with a "slab index", i.e. both a start and a count vector each the same length (the same as the number of dimensions as the array variable),  that is the only way to read them. 
