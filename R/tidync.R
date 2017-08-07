@@ -51,6 +51,11 @@ tidync.character <- function(x, what, ...) {
                              grid = meta$grid,
                              dimension = meta$dimension, 
                              variable = meta$variable)
+       
+       is_gmt <- all(sort(out$axis$variable) == 
+                       c("dimension", "spacing", "x_range", 
+                         "y_range", "z", "z_range"))
+       if (is_gmt) stop("this file is GMT form, and is not yet supported (try raster)")
        out$transforms <- axis_transforms(out)
        out <- structure(out,           class = "tidync")
        
