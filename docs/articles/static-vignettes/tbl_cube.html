@@ -29,10 +29,31 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../../reference/index.html">Reference</a>
+  <a href="../..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../../articles/index.html">Articles</a>
+  <a href="../../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../../articles/cmip5.html">A CMIP5 workflow with tidync</a>
+    </li>
+    <li>
+      <a href="../../articles/static-vignettes/tbl_cube.html">NetCDF tbl_cube</a>
+    </li>
+    <li>
+      <a href="../../articles/static-vignettes/tidync-examples.html">Tidy NetCDF examples</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../../news/index.html">News</a>
@@ -60,7 +81,7 @@
       <h1>NetCDF tbl_cube</h1>
                         <h4 class="author">Michael D. Sumner and Stuart Corney</h4>
             
-            <h4 class="date">2017-06-25</h4>
+            <h4 class="date">2017-08-07</h4>
           </div>
 
     
@@ -74,8 +95,8 @@
 
 <span class="kw">library</span>(tidync)
 <span class="kw">library</span>(tibble)
-roms_cube &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/tidync.html">tidync</a></span>(romsfile) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../../reference/activate.html">activate</a></span>(temp) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../../reference/hyper_filter.html">hyper_filter</a></span>(<span class="dt">xi_rho =</span> xi_rho <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>, 
+roms_cube &lt;-<span class="st"> </span><span class="kw">tidync</span>(romsfile) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">activate</span>(temp) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">hyper_filter</span>(<span class="dt">xi_rho =</span> xi_rho <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>, 
                <span class="dt">eta_rho =</span> eta_rho <span class="op">&gt;</span><span class="st"> </span><span class="dv">200</span>, 
 <span class="co">#               s_rho = index == 1,</span>
                <span class="dt">s_rho =</span> index <span class="op">%%</span><span class="st"> </span><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,
@@ -84,7 +105,7 @@ roms_cube &lt;-<span class="st"> </span><span class="kw"><a href="../../referenc
 <span class="co">#  hyper_tbl_cube()</span>
 
 <span class="kw">library</span>(ggplot2)
-<span class="kw">ggplot</span>(roms_cube <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>(), <span class="kw">aes</span>(xi_rho, eta_rho, <span class="dt">fill =</span> temp)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_raster</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>s_rho)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(roms_cube <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/as_tibble">as_tibble</a></span>(), <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(xi_rho, eta_rho, <span class="dt">fill =</span> temp)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile">geom_raster</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(<span class="op">~</span>s_rho)</code></pre></div>
 </div>
   </div>
 

@@ -52,10 +52,31 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/cmip5.html">A CMIP5 workflow with tidync</a>
+    </li>
+    <li>
+      <a href="../articles/static-vignettes/tbl_cube.html">NetCDF tbl_cube</a>
+    </li>
+    <li>
+      <a href="../articles/static-vignettes/tidync-examples.html">Tidy NetCDF examples</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -118,20 +139,23 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>l3file</span> <span class='kw'>&lt;-</span> <span class='fu'>system.file</span>(<span class='st'>"extdata"</span>, <span class='st'>"S2008001.L3m_DAY_CHL_chlor_a_9km.nc"</span>, <span class='kw'>package</span><span class='kw'>=</span> <span class='st'>"ncdump"</span>)
-<span class='no'>rnc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tidync.html'>tidync</a></span>(<span class='no'>l3file</span>)
-<span class='fu'><a href='hyper_filter.html'>hyper_filter</a></span>(<span class='no'>rnc</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 2
+<span class='no'>rnc</span> <span class='kw'>&lt;-</span> <span class='fu'>tidync</span>(<span class='no'>l3file</span>)
+<span class='fu'>hyper_filter</span>(<span class='no'>rnc</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 2
 #&gt;                access
 #&gt;                &lt;dttm&gt;
-#&gt; 1 2017-06-25 14:59:37
+#&gt; 1 2017-08-07 21:37:05
 #&gt; # ... with 1 more variables: source &lt;chr&gt;
 #&gt; filtered dimension summary: 
-#&gt; # A tibble: 2 x 4
-#&gt;    name        min       max length
-#&gt;   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;  &lt;int&gt;
-#&gt; 1   lon -179.95833 179.95836   4320
-#&gt; 2   lat  -89.95834  89.95834   2160</div><div class='input'><span class='fu'>library</span>(<span class='no'>dplyr</span>)
-<span class='fu'><a href='hyper_slice.html'>hyper_slice</a></span>(<span class='no'>l3file</span>, <span class='kw'>lat</span> <span class='kw'>=</span> <span class='no'>lat</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>) <span class='kw'>%&gt;%</span> <span class='fu'>dim</span>()</div><div class='output co'>#&gt; NULL</div><div class='input'>
- <span class='no'>ht</span> <span class='kw'>&lt;-</span> <span class='fu'>hyper_tibble</span>(<span class='no'>rnc</span>) <span class='kw'>%&gt;%</span> <span class='fu'>filter</span>(!<span class='fu'>is.na</span>(<span class='no'>chlor_a</span>))
+#&gt; # A tibble: 2 x 5
+#&gt;    name coord_dim        min       max length
+#&gt;   &lt;chr&gt;     &lt;lgl&gt;      &lt;dbl&gt;     &lt;dbl&gt;  &lt;int&gt;
+#&gt; 1   lon      TRUE -179.95833 179.95836   4320
+#&gt; 2   lat      TRUE  -89.95834  89.95834   2160</div><div class='input'><span class='fu'>library</span>(<span class='no'>dplyr</span>)
+<span class='fu'>lapply</span>(<span class='fu'>hyper_slice</span>(<span class='no'>l3file</span>, <span class='kw'>lat</span> <span class='kw'>=</span> <span class='no'>lat</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>, <span class='kw'>lon</span> <span class='kw'>=</span> <span class='no'>index</span> <span class='kw'>&gt;</span> <span class='fl'>3000</span>), <span class='no'>dim</span>)</div><div class='output co'>#&gt; $chlor_a
+#&gt; [1] 1320 1080
+#&gt; </div><div class='input'>
+ <span class='no'>ht</span> <span class='kw'>&lt;-</span> <span class='fu'>hyper_tibble</span>(<span class='no'>rnc</span>) <span class='kw'>%&gt;%</span>
+ <span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(!<span class='fu'>is.na</span>(<span class='no'>chlor_a</span>))
 <span class='no'>ht</span></div><div class='output co'>#&gt; # A tibble: 9 x 3
 #&gt;    chlor_a      lon       lat
 #&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -144,8 +168,8 @@
 #&gt; 7 0.800647 165.2917 -77.37501
 #&gt; 8 0.800647 165.3750 -77.37501
 #&gt; 9 0.800647 165.4584 -77.37501</div><div class='input'><span class='fu'>library</span>(<span class='no'>ggplot2</span>)
-<span class='fu'>ggplot</span>(<span class='no'>ht</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter</span>(!<span class='fu'>is.na</span>(<span class='no'>chlor_a</span>)),
-<span class='fu'>aes</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>lon</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>lat</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>chlor_a</span>)) + <span class='fu'>geom_point</span>()</div><img src='hyper_tibble-8.png' alt='' width='540' height='400' /><div class='input'>
+<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>ht</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(!<span class='fu'>is.na</span>(<span class='no'>chlor_a</span>)),
+<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>lon</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>lat</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>chlor_a</span>)) + <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_point'>geom_point</a></span>()</div><div class='img'><img src='hyper_tibble-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

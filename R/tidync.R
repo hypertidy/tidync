@@ -52,7 +52,7 @@ tidync.character <- function(x, what, ...) {
                              dimension = meta$dimension, 
                              variable = meta$variable)
        
-       is_gmt <- all(sort(out$axis$variable) == 
+       is_gmt <- identical(sort(out$axis$variable), 
                        c("dimension", "spacing", "x_range", 
                          "y_range", "z", "z_range"))
        if (is_gmt) stop("this file is GMT form, and is not yet supported (try raster)")

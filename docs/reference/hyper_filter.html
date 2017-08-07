@@ -52,10 +52,31 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/cmip5.html">A CMIP5 workflow with tidync</a>
+    </li>
+    <li>
+      <a href="../articles/static-vignettes/tbl_cube.html">NetCDF tbl_cube</a>
+    </li>
+    <li>
+      <a href="../articles/static-vignettes/tidync-examples.html">Tidy NetCDF examples</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -84,24 +105,24 @@
     </div>
 
     
-    <p>NSE arguments must be named as per the dimensions in the variable. This is a restrictive variant of <code>dplyr::filter</code>,
-with a syntax more like <code>dplyr::mutate</code>. This ensures that each element is named, so we know which dimension to
+    <p>NSE arguments must be named as per the dimensions in the variable. This is a restrictive variant of <code><a href='http://dplyr.tidyverse.org/reference/filter.html'>dplyr::filter</a></code>,
+with a syntax more like <code><a href='http://dplyr.tidyverse.org/reference/mutate.html'>dplyr::mutate</a></code>. This ensures that each element is named, so we know which dimension to
 apply this to, but also that the expression evaluated against can do some extra work for a nuanced test.</p>
     
 
-    <pre class="usage"><span class='fu'>hyper_filter</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>hyper_filter</span>(<span class='no'>.x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for tidync</span>
-<span class='fu'>hyper_filter</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>hyper_filter</span>(<span class='no'>.x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for default</span>
-<span class='fu'>hyper_filter</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>hyper_filter</span>(<span class='no'>.x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for character</span>
-<span class='fu'>hyper_filter</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>hyper_filter</span>(<span class='no'>.x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for hyperfilter</span>
-<span class='fu'>hyper_filter</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>hyper_filter</span>(<span class='no'>.x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for hyperfilter</span>
 <span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
@@ -110,12 +131,16 @@ apply this to, but also that the expression evaluated against can do some extra 
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>NetCDF object</p></td>
+      <th>.x</th>
+      <td><p>NetCDF file, connection object, or <code>tidync</code> object</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>currently ignored</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>tidync object to print</p></td>
     </tr>
     </table>
     

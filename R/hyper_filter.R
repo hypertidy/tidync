@@ -101,13 +101,17 @@ nc_get.character <- function(x, v) {
   
   safe_get <- purrr::safely(nc_get.NetCDF)
   val <- safe_get(con, v)
-  if (!is.null(val$result)) return(val$result)
+  if (!is.null(val$result)) {
+   ## print("using RNetCDF")
+    return(val$result)
+  }
   con4 <- NULL
   con4 <- ncdf4::nc_open(x, readunlim = FALSE, verbose = FALSE, auto_GMT = FALSE, suppress_dimvals = TRUE)
   on.exit(ncdf4::nc_close(con4), add = TRUE)
   safe_get4 <- purrr::safely(ncdf4::ncvar_get)
   val <- safe_get4(con4, v)
   if (!is.null(val$result)) {
+    print("using ncdf4")
     return(val$result)
   } else {
     #stop("error")
