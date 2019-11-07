@@ -8,7 +8,7 @@
 [![Travis-CI Build
 Status](https://travis-ci.org/ropensci/tidync.svg?branch=master&env=BUILD_NAME=xenial_release&label=linux)](https://travis-ci.org/ropensci/tidync)
 [![Build
-Status](https://travis-ci.org/ropensci/tidync.svg?branch=master&env=BUILD_NAME=osx_release&label=osx)](https://travis-ci.org/ropensci/tidync)
+Status](https://travis-ci.org/ropensci/tidync.svg?branch=master&env=BUILD_NAME=osx_release)](https://travis-ci.org/ropensci/tidync)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/ropensci/tidync?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/tidync-nvwwt)
 [![Coverage
